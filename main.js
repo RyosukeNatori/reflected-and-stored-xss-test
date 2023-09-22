@@ -1,22 +1,26 @@
-// テストファイル: directoryTest.js
-
 import fs from 'fs';
 import path from 'path';
 // システムのインポート
 
 const testDirectory =
   '/home/ryosuke/project/reflected-and-stored-xss-test/samples'; // テストするディレクトリのパス
+const testName = 'reflected-xss'; // テスト名
 
-// describe('ディレクトリ内のファイルのテスト', () => {
-const files = fs.readdirSync(testDirectory);
+export const makeTest = ({ dirName, testName }) => {
+  const files = fs.readdirSync(dirName);
+  describe(testName, () => {
+    const files = fs.readdirSync(dirName);
 
-files.forEach((file) => {
-  const filePath = path.join(testDirectory, file); // ファイルのフルパスを取得
-  console.log(filePath);
-  // test(`ファイル ${file} をテスト`, () => {
-  //   const filePath = path.join(testDirectory, file); // ファイルのフルパスを取得
-  //   const result = testFunction(filePath); // システムのテスト対象関数を呼び出す
-  //   expect(result).toBe(true); // 期待値がtrueであることをアサート
-  // });
-});
-// });
+    files.forEach((file) => {
+      exprectAssertXSS({ filePath: path.join(dirName, file) });
+    });
+  });
+};
+
+const exprectAssertXSS = async ({ filePath }) => {
+  test(`ファイル ${filePath} をテスト`, async () => {
+    expect(await assertXSS({ filePath })).toBe(true);
+  });
+};
+
+makeTest({ dirName: testDirectory, testName });
