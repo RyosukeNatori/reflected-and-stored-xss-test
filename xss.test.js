@@ -1,12 +1,12 @@
-import { describe, test, expect } from '@jest/globals';
 import fs from 'fs';
-const path = require('path');
-const { assertXSS } = require('../src/assertXSS');
+import path from 'path';
+import { describe, expect, test } from 'vitest';
+import { assertXSS } from '../test.mjs';
+
 // システムのインポート
 
-const testDirectory =
-  '/home/ryosuke/project/reflected-and-stored-xss-test/samples'; // テストするディレクトリのパス
-const testName = 'reflected-xss'; // テスト名
+const testDirectory = path.join(__dirname, 'samples'); // テストするディレクトリのパス
+const testName = 'xss'; // テスト名
 
 export const makeTest = ({ dirName, testName }) => {
   const files = fs.readdirSync(dirName);
