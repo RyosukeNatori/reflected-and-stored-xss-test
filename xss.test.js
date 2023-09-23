@@ -9,7 +9,6 @@ const reflectedSamplesDirectory = path.join(__dirname, 'samples/reflected');
 const storedSamplesDirectory = path.join(__dirname, 'samples/stored');
 
 export const makeTest = ({ dirName, testName }) => {
-  const files = fs.readdirSync(dirName);
   describe(testName, () => {
     const files = fs.readdirSync(dirName);
 
