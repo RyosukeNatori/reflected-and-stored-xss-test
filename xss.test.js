@@ -5,8 +5,8 @@ import { assertXSS } from '../test.mjs';
 
 // システムのインポート
 
-const testDirectory = path.join(__dirname, 'samples'); // テストするディレクトリのパス
-const testName = 'xss'; // テスト名
+const reflectedSamplesDirectory = path.join(__dirname, 'samples/reflected');
+const storedSamplesDirectory = path.join(__dirname, 'samples/stored');
 
 export const makeTest = ({ dirName, testName }) => {
   const files = fs.readdirSync(dirName);
@@ -25,4 +25,5 @@ const exprectAssertXSS = async ({ filePath }) => {
   });
 };
 
-makeTest({ dirName: testDirectory, testName });
+makeTest({ dirName: reflectedSamplesDirectory, testName: 'reflected-xss' });
+makeTest({ dirName: storedSamplesDirectory, testName: 'stored-xss' });
