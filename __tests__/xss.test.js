@@ -1,5 +1,5 @@
-import { describe, test, expect } from '@jest/globals';
-import fs from 'fs';
+const { describe, test, expect } = require('@jest/globals');
+const fs = require('fs');
 const path = require('path');
 const { assertXSS } = require('../src/assertXSS');
 // システムのインポート
