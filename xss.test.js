@@ -18,9 +18,9 @@ export const makeTest = ({ dirName, testName }) => {
   });
 };
 
-const expectAssertXSS = async ({ filePath }) => {
-  test(`ファイル ${filePath} をテスト`, async () => {
-    expect(await assertXSS({ filePath })).toBe(true);
+const expectAssertXSS = ({ filePath }) => {
+  test.concurrent(`ファイル ${filePath} をテスト`, async () => {
+    expect(assertXSS({ filePath })).toBe(true);
   });
 };
 
